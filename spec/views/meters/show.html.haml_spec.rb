@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "meters/show", type: :view do
   before(:each) do
-    @meter = assign(:meter, Meter.create!(
-      name: "Name",
-      interval: "Interval",
-      unit: "Unit"
-    ))
+    @meter = assign(:meter, create(:meter))
   end
 
   it "renders attributes in <p>" do

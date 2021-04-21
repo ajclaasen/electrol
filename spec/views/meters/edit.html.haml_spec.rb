@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "meters/edit", type: :view do
   before(:each) do
-    @meter = assign(:meter, Meter.create!(
-      name: "MyString",
-      interval: "MyString",
-      unit: "MyString"
-    ))
+    @meter = create(:meter)
   end
 
   it "renders the edit meter form" do

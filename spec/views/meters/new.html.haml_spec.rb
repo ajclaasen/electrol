@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "meters/new", type: :view do
   before(:each) do
-    assign(:meter, Meter.new(
-      name: "MyString",
-      interval: "MyString",
-      unit: "MyString"
-    ))
+    assign(:meter, build(:meter))
   end
 
   it "renders new meter form" do
