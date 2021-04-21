@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :meters
+  resources :meters, except: [:edit]
   devise_for :employees
 
   devise_scope :employee do

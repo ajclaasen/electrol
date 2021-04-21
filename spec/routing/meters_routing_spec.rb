@@ -14,10 +14,6 @@ RSpec.describe MetersController, type: :routing do
       expect(get: "/meters/1").to route_to("meters#show", id: "1")
     end
 
-    it "routes to #edit" do
-      expect(get: "/meters/1/edit").to route_to("meters#edit", id: "1")
-    end
-
 
     it "routes to #create" do
       expect(post: "/meters").to route_to("meters#create")
