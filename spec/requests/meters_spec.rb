@@ -13,6 +13,9 @@
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/meters", type: :request do
+  let(:employee) { create(:employee) }
+
+  before { sign_in employee }
   
   # Meter. As you add validations to Meter, be sure to
   # adjust the attributes here as well.
