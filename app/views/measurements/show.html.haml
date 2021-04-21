@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Meter:
+  = @measurement.meter
+%p
+  %b Amount:
+  = @measurement.amount
+
+= link_to 'Edit', edit_measurement_path(@measurement)
+\|
+= link_to 'Back', measurements_path

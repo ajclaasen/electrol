@@ -1,0 +1,23 @@
+%h1 Listing measurements
+
+%table
+  %thead
+    %tr
+      %th Meter
+      %th Amount
+      %th
+      %th
+      %th
+
+  %tbody
+    - @measurements.each do |measurement|
+      %tr
+        %td= measurement.meter
+        %td= measurement.amount
+        %td= link_to 'Show', measurement
+        %td= link_to 'Edit', edit_measurement_path(measurement)
+        %td= link_to 'Destroy', measurement, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Measurement', new_measurement_path
