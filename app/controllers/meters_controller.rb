@@ -64,6 +64,6 @@ class MetersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meter_params
-      params.require(:meter).permit(:name, :start, :end, :interval, :unit)
+      params.require(:meter).permit(:name, :start, :finish, :interval, :unit)
     end
 end

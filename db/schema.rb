@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_132009) do
+ActiveRecord::Schema.define(version: 2021_04_21_133208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_04_21_132009) do
   create_table "meters", force: :cascade do |t|
     t.string "name"
     t.date "start"
-    t.date "end"
+    t.date "finish"
     t.string "interval"
     t.string "unit"
     t.datetime "created_at", precision: 6, null: false
