@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @meter.name
+%p
+  %b Start:
+  = @meter.start
+%p
+  %b End:
+  = @meter.end
+%p
+  %b Interval:
+  = @meter.interval
+%p
+  %b Unit:
+  = @meter.unit
+
+= link_to 'Edit', edit_meter_path(@meter)
+\|
+= link_to 'Back', meters_path
