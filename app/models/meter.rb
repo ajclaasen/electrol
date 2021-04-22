@@ -7,6 +7,8 @@ class Meter < ApplicationRecord
 
   validates :name, :start, :finish, :interval, :unit, presence: true
 
+  before_create :instantiate_measurements
+
   def self.interval_options
     {
       "Days": 1.day,
@@ -14,5 +16,16 @@ class Meter < ApplicationRecord
       "Months": 1.month,
       "Years": 1.year
     }
+  end
+
+  def instantiate_measurements
+    return unless interval > 0
+
+    duration_in_days = finish - start
+    amount_of_measurements = (duration_in_days / interval.in_days).ceil
+
+    amount_of_measurements.times do
+      measurements.build()
+    end
   end
 end
