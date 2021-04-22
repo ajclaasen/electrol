@@ -1,0 +1,10 @@
+%header.navbar.navbar-expand-md.navbar-dark.bg-dark
+  .container
+    = link_to "Electrol", root_path, class: 'navbar-brand'
+    %nav
+      %ul.nav.navbar-nav.navbar-right
+        %li.nav-item= link_to "Home", root_path, class: 'nav-link'
+        - if employee_signed_in?
+          %li.nav-item= link_to "Sign out", destroy_employee_session_path, method: :delete, class: 'nav-link'
+        - else
+          %li.nav-item= link_to "Sign in", new_employee_session_path, class: 'nav-link'
