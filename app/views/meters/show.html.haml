@@ -16,4 +16,10 @@
   %b Unit:
   = @meter.unit
 
+%h3 Measurements
+
+- @meter.measurements.each do |m|
+  %p
+    = m.amount
+
 = link_to 'Back', meters_path

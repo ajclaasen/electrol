@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_135436) do
+ActiveRecord::Schema.define(version: 2021_04_21_163120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 2021_04_21_135436) do
     t.string "name"
     t.date "start"
     t.date "finish"
-    t.string "interval"
     t.string "unit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.interval "interval"
   end
 
   add_foreign_key "measurements", "meters"

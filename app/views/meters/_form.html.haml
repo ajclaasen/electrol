@@ -17,7 +17,7 @@
     = f.date_select :finish
   .field
     = f.label :interval
-    = f.text_field :interval
+    = f.select :interval, Meter.interval_options.keys
   .field
     = f.label :unit
     = f.text_field :unit

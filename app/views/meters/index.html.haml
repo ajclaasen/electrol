@@ -18,7 +18,7 @@
         %td= meter.name
         %td= meter.start
         %td= meter.finish
-        %td= meter.interval
+        %td= meter.interval.inspect # "7 days" instead of 86400
         %td= meter.unit
         %td= link_to 'Show', meter
         %td= link_to 'Destroy', meter, method: :delete, data: { confirm: 'Are you sure?' }

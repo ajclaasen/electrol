@@ -3,7 +3,7 @@ FactoryBot.define do
     name { "MyString" }
     start { Date.yesterday }
     finish { Date.tomorrow }
-    interval { "M" }
+    interval { 1.month }
     unit { "kWh" }
   end
 end
