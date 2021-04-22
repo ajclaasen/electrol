@@ -1,38 +1,40 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @meter.name
-%p
-  %b Start:
-  = @meter.start
-%p
-  %b Finish:
-  = @meter.finish
-%p
-  %b Interval:
-  = @meter.interval.inspect 
-%p
-  %b Unit:
-  = @meter.unit
+.container.p-3.my-3.border
+  %h1= @meter.name
 
-%h3 Measurements
+.container.p-3.my-3.border
+  %p
+    %b Start:
+    = @meter.start
+  %p
+    %b Finish:
+    = @meter.finish
+  %p
+    %b Interval:
+    = @meter.interval.inspect 
 
-= form_for @meter do |f|
-  - if @meter.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@meter.errors.count, "error")} prohibited this meter from being saved:"
-      %ul
-        - @meter.errors.full_messages.each do |message|
-          %li= message
+  .container.p-3.my-3.border
+    %h3 Measurements
 
-  = f.fields_for :measurements, @meter.measurements do |m|
-    .field
-      = m.label m.object.start
-      = m.number_field :amount
-      = @meter.unit
+    = form_for @meter do |f|
+      - if @meter.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@meter.errors.count, "error")} prohibited this meter from being saved:"
+          %ul
+            - @meter.errors.full_messages.each do |message|
+              %li= message
 
-  .actions
-    = f.submit 'Save'
+      = f.fields_for :measurements, @meter.measurements do |m|
+        .field.input-group.mb-3
+          .input-group-prepend
+            %span.input-group-text= m.object.start
+          = m.number_field :amount, class: 'form-control'
+          -# %input{type: 'text', class: 'form-control'}
+          .input-group-append
+            %span.input-group-text= @meter.unit
 
-= link_to 'Back', meters_path
+      .actions
+        = f.submit 'Save', class: 'btn btn-outline-success'
+
+  = link_to 'Back', meters_path, class: 'btn btn-outline-secondary'
