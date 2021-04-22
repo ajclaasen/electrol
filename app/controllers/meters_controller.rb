@@ -16,10 +16,6 @@ class MetersController < ApplicationController
     @meter = Meter.new
   end
 
-  # GET /meters/1/edit
-  def edit
-  end
-
   # POST /meters or /meters.json
   def create
     @meter = Meter.new(meter_params)
