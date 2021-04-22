@@ -38,3 +38,7 @@ $ rails s
 ```
 
 The application will be hosted on [`http://localhost:3000`](http://localhost:3000)
+
+You can sign in with the following login credentials:
+- Email: `employee@example.com`
+- Password: `employeePass`
