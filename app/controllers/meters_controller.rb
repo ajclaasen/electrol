@@ -42,7 +42,7 @@ class MetersController < ApplicationController
         format.html { redirect_to @meter, notice: "Meter was successfully updated." }
         format.json { render :show, status: :ok, location: @meter }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :show, status: :unprocessable_entity }
         format.json { render json: @meter.errors, status: :unprocessable_entity }
       end
     end
@@ -65,8 +65,8 @@ class MetersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meter_params
-      trusted = params.require(:meter).permit(:name, :start, :finish, :interval, :unit)
-      trusted[:interval] = Meter.interval_options[trusted[:interval].to_sym]
+      trusted = params.require(:meter).permit(:name, :start, :finish, :interval, :unit, measurements_attributes: [:amount, :id])
+      trusted[:interval] = Meter.interval_options[trusted[:interval].to_sym] if trusted[:interval].present?
       trusted
     end
 end

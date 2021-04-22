@@ -17,16 +17,18 @@ RSpec.describe "/meters", type: :request do
 
   before { sign_in employee }
   
-  # Meter. As you add validations to Meter, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    attributes = attributes_for(:meter)
+  let(:valid_attributes) { attributes_for(:meter) }
+
+  let(:postable_attributes) {
+    attributes = valid_attributes
     attributes[:interval] = Meter.interval_options.key(attributes[:interval]).to_s
     attributes
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    attributes = valid_attributes
+    attributes[:name] = ""
+    attributes
   }
 
   describe "GET /index" do
@@ -56,56 +58,36 @@ RSpec.describe "/meters", type: :request do
     context "with valid parameters" do
       it "creates a new Meter" do
         expect {
-          post meters_url, params: { meter: valid_attributes }
+          post meters_url, params: { meter: postable_attributes }
         }.to change(Meter, :count).by(1)
       end
 
       it "redirects to the created meter" do
-        post meters_url, params: { meter: valid_attributes }
+        post meters_url, params: { meter: postable_attributes }
         expect(response).to redirect_to(meter_url(Meter.last))
       end
-    end
 
-    context "with invalid parameters" do
-      it "does not create a new Meter" do
-        expect {
+      context "with a start, finish, and interval" do
+        let(:valid_attributes) { attributes_for(:meter, start: Date.yesterday, finish: Date.tomorrow, interval: 1.day) }
+
+        it "creates new Measurements" do
+          expect {
+            post meters_url, params: { meter: postable_attributes }
+          }.to change(Measurement, :count).by(2)
+        end
+      end
+
+      context "with invalid parameters" do
+        it "does not create a new Meter" do
+          expect {
+            post meters_url, params: { meter: invalid_attributes }
+          }.to change(Meter, :count).by(0)
+        end
+
+        it "renders an unprocessable entity response" do
           post meters_url, params: { meter: invalid_attributes }
-        }.to change(Meter, :count).by(0)
-      end
-
-      it "renders a successful response (i.e. to display the 'new' template)" do
-        post meters_url, params: { meter: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested meter" do
-        meter = create(:meter)
-        patch meter_url(meter), params: { meter: new_attributes }
-        meter.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the meter" do
-        meter = create(:meter)
-        patch meter_url(meter), params: { meter: new_attributes }
-        meter.reload
-        expect(response).to redirect_to(meter_url(meter))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        meter = create(:meter)
-        patch meter_url(meter), params: { meter: invalid_attributes }
-        expect(response).to be_successful
+          expect(response).to have_http_status(422)
+        end
       end
     end
   end

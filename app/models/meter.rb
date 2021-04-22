@@ -1,5 +1,6 @@
 class Meter < ApplicationRecord
   has_many :measurements, dependent: :destroy
+  accepts_nested_attributes_for :measurements
 
   # Ensures interval returns an `ActiveSupport::Duration` object.
   # Default behavior (thus, an obsolete line of code) from Rails 6.2 onwards.

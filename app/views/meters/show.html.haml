@@ -18,8 +18,21 @@
 
 %h3 Measurements
 
-- @meter.measurements.each do |m|
-  %p
-    = m.amount
+= form_for @meter do |f|
+  - if @meter.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@meter.errors.count, "error")} prohibited this meter from being saved:"
+      %ul
+        - @meter.errors.full_messages.each do |message|
+          %li= message
+
+  = f.fields_for :measurements, @meter.measurements do |m|
+    .field
+      /= measurement amount field label here
+      = m.number_field :amount
+      = @meter.unit
+
+  .actions
+    = f.submit 'Save'
 
 = link_to 'Back', meters_path
