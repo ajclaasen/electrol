@@ -20,7 +20,9 @@ RSpec.describe "/meters", type: :request do
   # Meter. As you add validations to Meter, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes = attributes_for(:meter)
+    attributes[:interval] = Meter.interval_options.key(attributes[:interval]).to_s
+    attributes
   }
 
   let(:invalid_attributes) {
@@ -29,7 +31,7 @@ RSpec.describe "/meters", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Meter.create! valid_attributes
+      create(:meter)
       get meters_url
       expect(response).to be_successful
     end
@@ -37,7 +39,7 @@ RSpec.describe "/meters", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      meter = Meter.create! valid_attributes
+      meter = create(:meter)
       get meter_url(meter)
       expect(response).to be_successful
     end
@@ -46,14 +48,6 @@ RSpec.describe "/meters", type: :request do
   describe "GET /new" do
     it "renders a successful response" do
       get new_meter_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /edit" do
-    it "render a successful response" do
-      meter = Meter.create! valid_attributes
-      get edit_meter_url(meter)
       expect(response).to be_successful
     end
   end
@@ -93,14 +87,14 @@ RSpec.describe "/meters", type: :request do
       }
 
       it "updates the requested meter" do
-        meter = Meter.create! valid_attributes
+        meter = create(:meter)
         patch meter_url(meter), params: { meter: new_attributes }
         meter.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the meter" do
-        meter = Meter.create! valid_attributes
+        meter = create(:meter)
         patch meter_url(meter), params: { meter: new_attributes }
         meter.reload
         expect(response).to redirect_to(meter_url(meter))
@@ -109,7 +103,7 @@ RSpec.describe "/meters", type: :request do
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        meter = Meter.create! valid_attributes
+        meter = create(:meter)
         patch meter_url(meter), params: { meter: invalid_attributes }
         expect(response).to be_successful
       end
@@ -118,14 +112,14 @@ RSpec.describe "/meters", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested meter" do
-      meter = Meter.create! valid_attributes
+      meter = create(:meter)
       expect {
         delete meter_url(meter)
       }.to change(Meter, :count).by(-1)
     end
 
     it "redirects to the meters list" do
-      meter = Meter.create! valid_attributes
+      meter = create(:meter)
       delete meter_url(meter)
       expect(response).to redirect_to(meters_url)
     end
