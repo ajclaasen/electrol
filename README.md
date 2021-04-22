@@ -1,24 +1,40 @@
-# README
+# Electrol
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Electricity usage logging and approval application.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+- Ruby (3.0.0 was used, but >= 2.5.0 might also work)
+- Postgresql (13 was used, but older versions might also work)
+- Yarn
 
-* System dependencies
+## Setup
 
-* Configuration
+Run the following commands:
+```
+$ bundle
+$ yarn
+```
 
-* Database creation
+### Database initialization
 
-* Database initialization
+Run the following commands:
+```
+$ rails db:setup
+```
 
-* How to run the test suite
+## Running the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+Run the following command:
+```
+$ rspec
+```
 
-* Deployment instructions
+## Running the application
 
-* ...
+Run the following command:
+```
+$ rails s
+```
+
+The application will be hosted on [`http://localhost:3000`](http://localhost:3000)
