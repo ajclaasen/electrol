@@ -2,13 +2,5 @@ Rails.application.routes.draw do
   resources :meters, except: [:edit]
   devise_for :employees
 
-  devise_scope :employee do
-    authenticated :employee do
-      root 'meters#index', as: :authenticated_root
-    end
-
-    unauthenticated do
-      root 'devise/sessions#new', as: :unauthenticated_root
-    end
-  end
+  root 'meters#index'
 end
