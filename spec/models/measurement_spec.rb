@@ -16,4 +16,41 @@ RSpec.describe Measurement, type: :model do
 
     it { is_expected.to_not be_valid }
   end
+
+  describe "#start" do
+    let(:meter) { create(:meter, start: Date.today, finish: Date.today + 2.weeks, interval: 1.week) }
+
+    subject { measurement.start }
+
+    describe "when it is the first measurement" do
+      let(:measurement) { meter.measurements.first }
+
+      it { is_expected.to eq Date.today }
+    end
+
+    describe "when it is the second measurement" do
+      let(:measurement) { meter.measurements.second }
+
+      it { is_expected.to eq Date.today + 1.week }
+    end
+  end
+
+  describe "#finish" do
+    let(:meter) { create(:meter, start: Date.today, finish: Date.today + 2.weeks, interval: 1.week) }
+
+    subject { measurement.finish }
+
+    describe "when it is the first measurement" do
+      let(:measurement) { meter.measurements.first }
+
+
+      it { is_expected.to eq Date.today + 1.week }
+    end
+
+    describe "when it is the second measurement" do
+      let(:measurement) { meter.measurements.second }
+
+      it { is_expected.to eq Date.today + 2.weeks }
+    end
+  end
 end

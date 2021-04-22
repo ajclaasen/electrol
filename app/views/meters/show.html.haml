@@ -28,7 +28,7 @@
 
   = f.fields_for :measurements, @meter.measurements do |m|
     .field
-      /= measurement amount field label here
+      = m.label m.object.start
       = m.number_field :amount
       = @meter.unit
 
