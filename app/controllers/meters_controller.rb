@@ -74,7 +74,7 @@ class MetersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meter_params
-      trusted = params.require(:meter).permit(:name, :start, :finish, :interval, :unit, measurements_attributes: [:amount, :id])
+      trusted = params.require(:meter).permit(:name, :start, :finish, :interval, :unit, measurements_attributes: [:amount, :id, :approved])
       trusted[:interval] = Meter.interval_options[trusted[:interval].to_sym] if trusted[:interval].present?
       trusted
     end

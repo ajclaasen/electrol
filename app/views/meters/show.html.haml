@@ -33,6 +33,17 @@
           = m.number_field :amount, class: 'form-control', step: 0.01, disabled: !current_user.employee?
           .input-group-append
             %span.input-group-text= @meter.unit
+          - if current_user.employee?
+            .input-group-append
+              %span.input-group-text
+                - if m.object.approved
+                  %i.fas.fa-check
+                - else
+                  %i.fas.fa-question
+          - if current_user.manager?
+            .input-group-append
+              .input-group-text
+                = m.check_box :approved
 
       .actions
         = f.submit 'Save', class: 'btn btn-outline-success'
