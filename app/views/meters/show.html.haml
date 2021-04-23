@@ -32,7 +32,7 @@
         .field.input-group.col-md-7.mb-3
           .input-group-prepend
             %span.input-group-text= m.object.start
-          = m.number_field :amount, class: 'form-control'
+          = m.number_field :amount, class: 'form-control', step: 0.01
           .input-group-append
             %span.input-group-text= @meter.unit
 
