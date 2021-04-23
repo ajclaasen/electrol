@@ -35,7 +35,7 @@ class Meter < ApplicationRecord
 
     def finish_is_after_start
       if finish <= start
-        errors.add(:finish, "can't be before start")
+        errors.add(:finish, "needs to be after start")
       end
     end
 end
