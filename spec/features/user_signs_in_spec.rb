@@ -12,6 +12,7 @@ feature 'Employee signs in' do
     click_button "Log in"
 
     expect(page).to have_content "Meters"
+    expect(page).to have_content "Employee"
   end
 end
 
@@ -27,5 +28,6 @@ feature 'Manager signs in' do
     click_button "Log in"
 
     expect(page).to have_content "Meters"
+    expect(page).to have_content "Manager"
   end
 end
