@@ -1,10 +1,38 @@
 require 'rails_helper'
 
 RSpec.describe Meter, type: :model do
+  let(:start) { Date.yesterday }
+  let(:finish) { Date.tomorrow }
+  let(:interval) { 1.month }
+  
+  describe "validations" do
+    subject { build(:meter, start: start, finish: finish, interval: interval) }
+
+    describe "when the finish is before the start" do
+      let(:start) { Date.today }
+      let(:finish) { Date.yesterday }
+
+      it { is_expected.to be_invalid }
+    end
+
+    describe "when the finish is equal to the start" do
+      let(:start) { Date.today }
+      let(:finish) { Date.today }
+
+      it { is_expected.to be_invalid }
+    end
+
+    describe "when the finish is after the start" do
+      let(:start) { Date.today }
+      let(:finish) { Date.tomorrow }
+
+      it { is_expected.to be_valid }
+    end
+  end
+
+
+
   describe "#measurements.count" do
-    let(:start) { Date.yesterday }
-    let(:finish) { Date.tomorrow }
-    let(:interval) { 1.month }
     let(:meter) { create(:meter, start: start, finish: finish, interval: interval) }
 
     subject { meter.measurements.count }

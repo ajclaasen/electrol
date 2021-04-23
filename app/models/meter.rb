@@ -7,6 +7,7 @@ class Meter < ApplicationRecord
   attribute :interval, :interval
 
   validates :name, :start, :finish, :interval, :unit, presence: true
+  validate :finish_is_after_start
 
   before_create :instantiate_measurements
 
@@ -19,14 +20,22 @@ class Meter < ApplicationRecord
     }
   end
 
-  def instantiate_measurements
-    return unless interval > 0
+  private
 
-    duration_in_days = finish - start
-    amount_of_measurements = (duration_in_days / interval.in_days).ceil
+    def instantiate_measurements
+      return unless interval > 0
 
-    amount_of_measurements.times do
-      measurements.build()
+      duration_in_days = finish - start
+      amount_of_measurements = (duration_in_days / interval.in_days).ceil
+
+      amount_of_measurements.times do
+        measurements.build()
+      end
     end
-  end
+
+    def finish_is_after_start
+      if finish <= start
+        errors.add(:finish, "can't be before start")
+      end
+    end
 end
