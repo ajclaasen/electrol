@@ -14,8 +14,7 @@ Rough estimation
 | Total             | ~10             |
 
 
-## Time 'wasted' (included in table above)
-Time spent on learning basic lessons
+## Time spent on learning basic lessons
 
 | Lesson                     | Amount (in hrs) |
 | -------------------------- | --------------- |
