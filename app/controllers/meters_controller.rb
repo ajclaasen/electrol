@@ -2,6 +2,8 @@ class MetersController < ApplicationController
   before_action :set_meter, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
+  before_action :authorize_employee, only: %i[ new create ]
+
   # GET /meters or /meters.json
   def index
     @meters = Meter.all
@@ -54,7 +56,18 @@ class MetersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def authorize_employee
+      unless current_user.employee?
+        redirect_to root_path
+      end
+    end
+
+    def authorize_manager
+      unless current_user.manager?
+        redirect_to root_path
+      end
+    end
+
     def set_meter
       @meter = Meter.find(params[:id])
     end

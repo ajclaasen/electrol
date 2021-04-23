@@ -27,4 +27,4 @@
 
   %br
 
-  = link_to 'New Meter', new_meter_path, class: 'btn btn-outline-success'
+  = link_to 'New Meter', new_meter_path, class: 'btn btn-outline-success' if current_user.employee?
