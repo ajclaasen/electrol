@@ -11,7 +11,7 @@ Rough estimation
 | Styling           | 2               |
 | Finishing touches | 1               |
 | ----------------- | --------------- |
-| Total             | 9               |
+| Total             | ~10             |
 
 
 ## Time 'wasted' (included in table above)
