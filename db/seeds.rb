@@ -6,5 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-employee = Employee.create(email: "employee@example.com", password: "password")
+employee = User.create(email: "employee@example.com", password: "password", role: :employee)
 employee.save!
+
+manager = User.create(email: "manager@example.com", password: "password", role: :manager)
+manager.save!

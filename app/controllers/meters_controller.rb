@@ -1,6 +1,6 @@
 class MetersController < ApplicationController
   before_action :set_meter, only: %i[ show edit update destroy ]
-  before_action :authenticate_employee!
+  before_action :authenticate_user!
 
   # GET /meters or /meters.json
   def index
