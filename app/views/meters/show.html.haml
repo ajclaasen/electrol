@@ -35,7 +35,7 @@
             %span.input-group-text= @meter.unit
           - if current_user.employee?
             .input-group-append
-              %span.input-group-text
+              %span.input-group-text{class: m.object.approved ? 'bg-success' : 'bg-warning'}
                 - if m.object.approved
                   %i.fas.fa-check
                 - else
