@@ -19,6 +19,24 @@ feature 'Employee attempts to update a measurement' do
     expect(page).to have_xpath("//input[@value='1234.0']")
   end
 
+  describe "when they update the second measurement" do
+    scenario 'they see the second measurement has been updated' do
+      sign_in employee
+
+      visit meter_path(meter)
+
+      page.find('h3', text: "Measurements").find(:xpath, "..").all("input[type='number']")[1]
+        .fill_in with: "4321"
+
+      click_button "Save"
+
+      visit meter_path(meter)
+
+      expect(page.find('h3', text: "Measurements").find(:xpath, "..")
+        .all("input[type='number']")[1].value).to match /4321/
+    end
+  end
+
   describe "when the measurement has been approved" do
     let(:meter) { create(:meter, :with_approved_measurement) }
 

@@ -1,6 +1,8 @@
 class Measurement < ApplicationRecord
   belongs_to :meter
 
+  default_scope { order(id: :asc) }
+
   def start
     meter.start + (nth_measurement_of_parent * meter.interval)
   end
