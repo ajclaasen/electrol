@@ -9,5 +9,9 @@ FactoryBot.define do
     trait :with_measurement do
       measurements { build_list :measurement, 1 }
     end
+
+    trait :with_approved_measurement do
+      measurements { build_list :measurement, 1, approved: true }
+    end
   end
 end
