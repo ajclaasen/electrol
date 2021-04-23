@@ -5,14 +5,17 @@
 
 .container.p-3.my-3.border
   %p
-    %b Start:
+    %b Start date:
     = @meter.start
   %p
-    %b Finish:
+    %b Finish date:
     = @meter.finish
   %p
     %b Interval:
     = @meter.interval.inspect 
+  %p
+    %b Measurement Unit:
+    = @meter.unit
 
   .container.p-3.my-3.border
     %h3 Measurements
@@ -26,11 +29,10 @@
               %li= message
 
       = f.fields_for :measurements, @meter.measurements do |m|
-        .field.input-group.mb-3
+        .field.input-group.col-md-7.mb-3
           .input-group-prepend
             %span.input-group-text= m.object.start
           = m.number_field :amount, class: 'form-control'
-          -# %input{type: 'text', class: 'form-control'}
           .input-group-append
             %span.input-group-text= @meter.unit
 

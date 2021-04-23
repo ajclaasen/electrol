@@ -6,20 +6,22 @@
         - @meter.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .field.form-group
     = f.label :name
-    = f.text_field :name
-  .field
+    = f.text_field :name, class: 'form-control', placeholder: 'Name'
+  .field.form-group
     = f.label :start
-    = f.date_select :start
-  .field
+    .input-group
+      = f.date_select :start, {}, class: 'custom-select col-md-3 mb-3'
+  .field.form-group
     = f.label :finish
-    = f.date_select :finish
+    .input-group
+      = f.date_select :finish, {}, class: 'custom-select col-md-3 mb-3'
   .field
     = f.label :interval
-    = f.select :interval, Meter.interval_options.keys
-  .field
+    = f.select :interval, Meter.interval_options.keys, {}, class: 'custom-select'
+  .field.form-group
     = f.label :unit
-    = f.text_field :unit
+    = f.text_field :unit, class: 'form-control', placeholder: 'Measurement Unit'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-outline-primary'
