@@ -41,4 +41,4 @@ The application will be hosted on [`http://localhost:3000`](http://localhost:300
 
 You can sign in with the following login credentials:
 - Email: `employee@example.com`
-- Password: `employeePass`
+- Password: `password`
