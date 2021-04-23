@@ -33,16 +33,14 @@
           = m.number_field :amount, class: 'form-control', step: 0.01, disabled: !current_user.employee? || m.object.approved?
           .input-group-append
             %span.input-group-text= @meter.unit
-          - if current_user.employee?
-            .input-group-append
-              %span.input-group-text{class: m.object.approved ? 'bg-success' : 'bg-warning'}
+          .input-group-append
+            %span.input-group-text{class: m.object.approved ? 'bg-success' : 'bg-warning'}
+              - if current_user.employee?
                 - if m.object.approved
                   %i.fas.fa-check
                 - else
                   %i.fas.fa-question
-          - if current_user.manager?
-            .input-group-append
-              .input-group-text
+              - elsif current_user.manager?
                 = m.check_box :approved
 
       .actions
