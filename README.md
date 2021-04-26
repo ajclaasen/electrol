@@ -4,7 +4,7 @@ Electricity usage logging and approval application.
 
 ## Prerequisites
 
-- Ruby (3.0.0 was used, but >= 2.5.0 might also work)
+- Ruby (3.0.1 was used, but >= 2.5.0 might also work)
 - Postgresql (13 was used, but older versions might also work)
 - Yarn
 
