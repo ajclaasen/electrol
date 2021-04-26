@@ -17,6 +17,8 @@ Rough estimation
 
 ## Time spent on learning basic lessons
 
+Included in table above.
+
 | Lesson                     | Amount (in hrs) |
 | -------------------------- | --------------- |
 | Scaffolds are bad          | 2               |
