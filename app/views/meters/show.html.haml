@@ -34,14 +34,20 @@
           .input-group-append
             %span.input-group-text= @meter.unit
           .input-group-append
-            %span.input-group-text{class: m.object.approved ? 'bg-success' : 'bg-warning'}
-              - if current_user.employee?
-                - if m.object.approved
+            - if current_user.employee?
+              - if m.object.approved
+                %span.input-group-text.bg-success{title: "Approved by a manager"}
                   %i.fas.fa-check
-                - else
+              - else
+                %span.input-group-text.bg-warning{title: "Not yet approved by a manager"}
                   %i.fas.fa-question
-              - elsif current_user.manager?
-                = m.check_box :approved
+            - elsif current_user.manager?
+              - if m.object.approved
+                %span.input-group-text.bg-success
+                  = m.check_box :approved
+              - else
+                %span.input-group-text.bg-warning
+                  = m.check_box :approved
 
       .actions
         = f.submit 'Save', class: 'btn btn-outline-success'
