@@ -3,6 +3,8 @@ class Measurement < ApplicationRecord
 
   default_scope { order(id: :asc) }
 
+  validate :amount_not_changed, if: :approved
+
   def start
     meter.start + (nth_measurement_of_parent * meter.interval)
   end
@@ -20,5 +22,11 @@ class Measurement < ApplicationRecord
       end
       
       nth_measurement
+    end
+
+    def amount_not_changed
+      if amount_changed? && self.persisted?
+        errors.add(:amount, "Change of amount not allowed when approved")
+      end
     end
 end

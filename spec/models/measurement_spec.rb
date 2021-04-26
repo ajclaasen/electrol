@@ -17,6 +17,16 @@ RSpec.describe Measurement, type: :model do
     it { is_expected.to_not be_valid }
   end
 
+  describe "when it has been approved" do
+    let(:measurement) { create(:measurement, :approved) }
+
+    describe "and the amount is changed" do
+      before { measurement.amount = measurement.amount + 1 }
+
+      it { is_expected.to_not be_valid }
+    end
+  end
+
   describe "#start" do
     let(:meter) { create(:meter, start: Date.today, finish: Date.today + 2.weeks, interval: 1.week) }
 
