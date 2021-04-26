@@ -9,9 +9,10 @@ Rough estimation
 | Meters            | 1               |
 | Measurements      | 4               |
 | Styling           | 2               |
-| Finishing touches | 1               |
+| Manager approval  | 3               |
+| Finishing touches | 3               |
 | ----------------- | --------------- |
-| Total             | ~10             |
+| Total             | ~15             |
 
 
 ## Time spent on learning basic lessons
